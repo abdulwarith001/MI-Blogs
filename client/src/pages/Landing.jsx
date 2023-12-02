@@ -12,6 +12,7 @@ const Landing = () => {
       </nav>
       <div className="container page">
         <div className="info">
+            <img src={illustration} alt="" className="img mobile-img" />
           <h1>
             <span>welcome</span> to my Blog
           </h1>
@@ -27,7 +28,9 @@ const Landing = () => {
             Get started
           </Link>
         </div>
-        <img src={illustration} alt="" className="img main-img" />
+        <div>
+          <img src={illustration} alt="" className="img main-img" />
+        </div>
       </div>
 
       <section className="posts">

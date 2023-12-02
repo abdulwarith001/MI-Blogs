@@ -6,7 +6,7 @@ const Wrapper = styled.section`
   }
 
   .post-container {
-    width: 80%;
+    width: 100%;
     margin: 0 auto 2.3em;
     display: flex;
     flex-direction: column;
@@ -36,7 +36,7 @@ const Wrapper = styled.section`
     font-weight: bolder;
   }
 
-  .blog-content > p {
+  .blog-content > div > p {
     line-height: 1.5em;
     word-spacing: 0.3em;
     color: rgba(0, 0, 0, 0.7);
@@ -78,6 +78,7 @@ const Wrapper = styled.section`
       margin-top: -2em;
     }
     .post-container {
+      width: 80%;
       flex-direction: row;
     }
     .post-container > .image-wrapper {
