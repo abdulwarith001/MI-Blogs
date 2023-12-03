@@ -65,7 +65,7 @@ const Wrapper = styled.aside`
     place-items: center;
   }
   .active {
-    background-color: rgb;
+    /* background-color: rgb; */
     color: var(--primary-500);
   }
 `;
