@@ -4,10 +4,9 @@
   "description": "A full blog website that gives bloggers full customization control over their blog page",
   "main": "backend/app",
   "scripts": {
-    "start": "node backend/app",
-    "client": "cd client && npm run dev",
-    "build": "cd client && npm run build",
-    "server": "nodemon backend/app"
+  "build:client": "vite build",
+  "start:server": "node backend/app.js", // Adjust the server start command accordingly
+  "deploy": "npm run build:client && cp -r client/dist/* /public/ && node app"
   },
   "repository": {
     "type": "git",
