@@ -1,17 +1,12 @@
 import styled from "styled-components";
 
 const Wrapper = styled.section`
-  .posts {
-    margin: -7em 0 0;
-  }
-
   .post-container {
     width: 100%;
     margin: 0 auto 2.3em;
     display: flex;
     flex-direction: column;
     background-color: white;
-    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.1);
     border-radius: 0.3em;
   }
 
@@ -44,18 +39,6 @@ const Wrapper = styled.section`
     letter-spacing: 0.01em;
   }
 
-  .continue {
-    padding: 0.4em;
-    width: 40%;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    margin: 1.5em auto 0.5em;
-    border-radius: 1em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-  }
-
   .date {
     text-align: right;
     color: black;
@@ -73,10 +56,17 @@ const Wrapper = styled.section`
     text-align: left;
     margin-top: 1.5em;
   }
+
+  .see-more {
+    font-weight: bolder;
+    word-spacing: normal;
+    color: rgb(93, 100, 202);
+  }
+
+  .see-more:hover {
+    text-decoration: underline;
+  }
   @media (min-width: 992px) {
-    .posts {
-      margin-top: -2em;
-    }
     .post-container {
       width: 80%;
       flex-direction: row;

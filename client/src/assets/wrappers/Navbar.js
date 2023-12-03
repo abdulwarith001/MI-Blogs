@@ -72,6 +72,10 @@ const Wrapper = styled.section`
     outline: none;
     font-size: 1.5em;
   }
+
+  .show-sidebar{
+    display: none;
+  }
   @media (min-width: 992px) {
     .dashboard {
       grid-template-columns: auto 1fr;

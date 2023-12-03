@@ -10,17 +10,17 @@ const Wrapper = styled.section`
     align-items: center;
   }
   .page {
-    height: 90vh;
+    height: fit-content;
     display: grid;
     align-items: center;
-    gap: 2em; 
-  }
+    gap: 2em;
 
+  }
+  
   .mobile-img {
     margin-bottom: 2em;
   }
   .info {
-    /* margin: 2em 0; */
     gap: 1em;
   }
   h1 {
@@ -49,7 +49,6 @@ const Wrapper = styled.section`
     font-size: 2em;
     font-weight: bolder;
     margin-top: 1em;
-
     div {
       width: 3.5em;
       margin: 0.1em auto 1em;
@@ -68,6 +67,14 @@ const Wrapper = styled.section`
 
     .mobile-img {
       display: none;
+    }
+
+    .headerText {
+      margin-top: -1em;
+    }
+
+    .posts {
+      margin-top: 1em;
     }
   }
 `;

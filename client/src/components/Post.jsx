@@ -1,7 +1,8 @@
 import React from 'react'
 import Wrapper from '../assets/wrappers/Post';
 import sample from "../assets/images/sample.jpg";
-import { FaLongArrowAltRight } from "react-icons/fa";
+import { FaLongArrowAltRight, FaCaretDown } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 
 const Post = () => {
     return (
@@ -15,7 +16,7 @@ const Post = () => {
               Posted <span>17th Nov 2023</span>
             </div>
             <h1>Sample title</h1>
-            <div>
+            <div className="content">
               <p>
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quae
                 doloremque adipisci esse non dignissimos maiores doloribus amet
@@ -27,13 +28,13 @@ const Post = () => {
                 Dolor molestiae ut temporibus magnam modi deleniti voluptatum
                 praesentium officiis. Dicta reiciendis est maiores accusamus
                 voluptatum sequi obcaecati illo natus id velit
+                <Link className="see-more">
+                  ...see more
+                  <FaCaretDown />
+                </Link>
               </p>
             </div>
 
-            <button className="continue">
-              continue reading
-              <FaLongArrowAltRight />
-            </button>
             <div className="date credit">
               By <span>Abdulwahab Abdulwarith</span>
             </div>
