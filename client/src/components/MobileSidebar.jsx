@@ -22,7 +22,7 @@ const MobileSidebar = () => {
           <header>
             <Logo />
           </header>
-          <NavLinks />
+            <NavLinks/>
         </div>
       </div>
         </Wrapper>

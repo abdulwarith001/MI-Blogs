@@ -46,10 +46,13 @@ const Wrapper = styled.aside`
     padding-top: 2rem;
     display: flex;
     flex-direction: column;
+    width: 90%;
   }
   .nav-link {
     display: flex;
     align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
     color: var(--text-secondary-color);
     padding: 1rem 0;
     text-transform: capitalize;
@@ -65,8 +68,9 @@ const Wrapper = styled.aside`
     place-items: center;
   }
   .active {
-    /* background-color: rgb; */
-    color: var(--primary-500);
+    background-color: rgb(93, 100, 202);
+    color: white;
+    border-radius: 1.5em 10em;
   }
 `;
 export default Wrapper;
