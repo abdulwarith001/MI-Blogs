@@ -34,8 +34,13 @@ const Wrapper = styled.section`
     width: fit-content;
     display: flex;
     align-self: flex-end;
-    margin-top: 1em;
+    margin-top: 4em;
     padding: 1em 5em;
   }
 `;
+
+export const Editor = styled.div`
+height:500px;
+/* background-color: green; */
+`
 export default Wrapper;
