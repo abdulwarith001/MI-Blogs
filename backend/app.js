@@ -1,15 +1,40 @@
-require('dotenv').config()
-const express = require("express");
-const path = require("path");
-
+// app.js
+import dotenv from "dotenv";
+import express from "express";
+import "express-async-errors";
+import mongoose from "mongoose";
+import { fileURLToPath } from "url";
+import { dirname, join } from "path"; // Import join function from path module
+import bodyParser from "body-parser";
+import authRoute from './routes/authRoutes.js'
+import {notFound, errorMiddleware} from "./middlewares/index.js";
+dotenv.config();
 const app = express();
 
-app.use(express.static(path.resolve(__dirname, "../public")));
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 
-app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../public', 'index.html'))
-})
+// Use the join function to resolve paths
+app.use(express.static(join(__dirname, "../public")));
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: false}))
+app.get("*", (req, res) => {
+  res.sendFile(join(__dirname, "../public", "index.html"));
+});
 
-const port = process.env.PORT
-app.listen(port, () => console.log("Server started..."));
+app.use('/api/auth', authRoute)
+
+app.use(notFound)
+app.use(errorMiddleware)
+
+const port = process.env.PORT || 5000;
+
+
+try {
+  await mongoose.connect(process.env.MONGO_URL);
+ app.listen(port, () => console.log(`Server started on port ${port}...`));
+} catch (error) {
+  console.log(error);
+  process.exit(1);
+}

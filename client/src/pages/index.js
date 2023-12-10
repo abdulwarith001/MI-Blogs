@@ -8,7 +8,6 @@ import CreatePost from './CreatePost'
 import AllPosts from "./AllPosts";
 import Dashboard from "./Dashboard";
 
-
 export {
   HomeLayout,
   Landing,
@@ -18,5 +17,5 @@ export {
   CreatePost,
   DashboardLayout,
   AllPosts,
-  Dashboard
+  Dashboard,
 };
