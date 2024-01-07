@@ -35,6 +35,17 @@ const Wrapper = styled.aside`
     border-radius: 0.2em;
     box-shadow: 0.5px 0.5px 10px rgba(0, 0, 0, 0.1),
       -0.5px -0.5px 10px rgba(0, 0, 0, 0.1);
+    border: none;
+    cursor: pointer;
+    transition: all 500ms ease-in-out;
+  }
+
+  .dropdown:hover{
+    filter: brightness(90%)
+  }
+
+  .dropdown:active{
+    transform: scale(-0.9)
   }
 
   .show-logout {

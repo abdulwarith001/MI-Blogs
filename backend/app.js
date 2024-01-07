@@ -7,14 +7,15 @@ import { fileURLToPath } from "url";
 import { dirname, join } from "path"; // Import join function from path module
 import bodyParser from "body-parser";
 import authRoute from './routes/authRoutes.js'
-import {notFound, errorMiddleware} from "./middlewares/index.js";
+import { notFound, errorMiddleware } from "./middlewares/index.js";
+import cors from 'cors'
 dotenv.config();
 const app = express();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-
+app.use(cors())
 // Use the join function to resolve paths
 app.use(express.static(join(__dirname, "../public")));
 app.use(bodyParser.json())

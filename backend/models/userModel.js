@@ -17,6 +17,11 @@ const UserSchema = new mongoose.Schema({
     ],
   },
   password: String,
+  blogName: {
+    type: String,
+    required: [true, 'Blog name is required'],
+    unique: true
+  },
   location: {
     type: String,
     default: "lagos",
@@ -36,4 +41,7 @@ UserSchema.pre("save", async function (next) {
   this.password = await bcrypt.hash(this.password, salt);
 });
 
+UserSchema.methods.matchPasswords = async function (enteredPassword) {
+  return await bcrypt.compare(enteredPassword, this.password);
+};
 export default mongoose.model("User", UserSchema);

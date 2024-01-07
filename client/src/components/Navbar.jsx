@@ -8,7 +8,8 @@ import { useDashboardContext } from "../pages/DashboardLayout";
 
 
 const Navbar = () => {
-    const { toggleSidebar, showMobileSidebar } = useDashboardContext();
+    const { toggleSidebar, user } = useDashboardContext();
+    // console.log(user)
 
   return (
     <Wrapper>
@@ -22,8 +23,8 @@ const Navbar = () => {
         </button>
 
         <Search />
-        <h4>Blog name</h4>
-        <Logout />
+        <h4>{user.blogName}'s blog</h4>
+        <Logout name={ user.name} />
       </div>
     </Wrapper>
   );

@@ -39,7 +39,7 @@ const Wrapper = styled.section`
   }
 
   .input-main-wrapper {
-    margin-top: 3em;
+    margin-top: 1em;
   }
 
   .input-wrapper {

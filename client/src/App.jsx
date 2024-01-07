@@ -1,6 +1,19 @@
 import React from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { HomeLayout, Landing, Login, Register, Error, CreatePost, DashboardLayout, AllPosts, Dashboard } from "./pages";
+import {
+  HomeLayout,
+  Landing,
+  Login,
+  Register,
+  Error,
+  CreatePost,
+  DashboardLayout,
+  AllPosts,
+  Dashboard,
+} from "./pages";
+import PrivateRoute from "./components/ProtectRoute";
+
+// ... (imports remain the same)
 
 const router = createBrowserRouter([
   {
@@ -21,23 +34,27 @@ const router = createBrowserRouter([
         element: <Register />,
       },
       {
-        path: 'dashboard',
-        element: <DashboardLayout />,
+        path: "dashboard",
+        element: <PrivateRoute>
+          <DashboardLayout>
+            <Dashboard />
+          </DashboardLayout>
+        </PrivateRoute>,
         children: [
           {
             index: true,
             element: <Dashboard />,
           },
           {
-            path: 'posts',
-            element: <AllPosts/>
+            path: "posts",
+            element: <AllPosts />,
           },
           {
-            path: 'create-post',
-            element: <CreatePost/>
-          }
-        ]
-      }
+            path: "create-post",
+            element: <CreatePost />,
+          },
+        ],
+      },
     ],
   },
 ]);
