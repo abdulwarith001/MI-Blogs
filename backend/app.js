@@ -6,7 +6,7 @@ import mongoose from "mongoose";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path"; // Import join function from path module
 import bodyParser from "body-parser";
-import authRoute from './routes/authRoutes.js'
+import {authRoute, blogRoute} from './routes/index.js'
 import { notFound, errorMiddleware } from "./middlewares/index.js";
 import cors from 'cors'
 dotenv.config();
@@ -25,6 +25,7 @@ app.get("*", (req, res) => {
 });
 
 app.use('/api/auth', authRoute)
+app.use("/api/blog", blogRoute);
 
 app.use(notFound)
 app.use(errorMiddleware)

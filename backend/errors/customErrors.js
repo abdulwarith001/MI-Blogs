@@ -30,3 +30,10 @@ export class UnauthorizedError extends Error {
     this.statusCode = StatusCodes.FORBIDDEN;
   }
 }
+export class MulterImageError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = "MulterImageError";
+    this.statusCode = StatusCodes.BAD_REQUEST;
+  }
+}

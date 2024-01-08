@@ -54,3 +54,10 @@ export const validateLogin = withValidationErrors([
     .withMessage("Invalid email"),
   body("password").notEmpty().withMessage("Password is required"),
 ]);
+
+export const validateBlogInput = withValidationErrors([
+  body("title")
+    .notEmpty()
+    .withMessage("Title is a required field"),
+  body("content").notEmpty().withMessage("content is required"),
+]);
