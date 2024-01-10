@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createBlogPost } from "../controllers/blogController.js";
+import { createBlogPost, getLatestBlogPost } from "../controllers/blogController.js";
 const router = Router();
 import { validateBlogInput } from "../middlewares/validateMiddleware.js";
 import authUser from "../middlewares/authMiddleware.js";
@@ -16,5 +16,7 @@ router.post(
   cloudinaryUpload,
   createBlogPost
 );
+
+router.get('/latest', getLatestBlogPost)
 
 export default router;

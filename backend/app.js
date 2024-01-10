@@ -16,16 +16,20 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 app.use(cors())
+
+
 // Use the join function to resolve paths
 app.use(express.static(join(__dirname, "../public")));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
+
+app.use("/api/auth", authRoute);
+app.use("/api/blog", blogRoute);
 app.get("*", (req, res) => {
   res.sendFile(join(__dirname, "../public", "index.html"));
 });
 
-app.use('/api/auth', authRoute)
-app.use("/api/blog", blogRoute);
+
 
 app.use(notFound)
 app.use(errorMiddleware)
