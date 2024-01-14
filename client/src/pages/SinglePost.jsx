@@ -6,6 +6,7 @@ import parse from "html-react-parser";
 import Logo from "../components/Logo";
 import SocialMediaShare from "../components/SharePost";
 import Loader from '../components/Loading'
+import { Helmet } from "react-helmet";
 
 const SinglePost = () => {
   const { title } = useParams();
