@@ -32,10 +32,6 @@ const postUrl = `${window.location.origin}${location.pathname}`;
     getPost();
   }, []);
 
-  const stripHtmlTags = (html) => {
-    return html.replace(/<[^>]*>?/gm, "");
-  };
-
   return (
     <Wrapper>
       {data.title && (
@@ -55,7 +51,7 @@ const postUrl = `${window.location.origin}${location.pathname}`;
           <div>
             <img src={data.image.url} alt={data.title} />
           </div>
-          {data.postedBy}
+          <span>{data.postedBy}</span>
         </article>
       )}
 

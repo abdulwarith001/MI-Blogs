@@ -48,6 +48,7 @@ const Wrapper = styled.section`
   .btnContainer {
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 1em;
     margin-top: 1em;
   }
@@ -61,12 +62,20 @@ const Wrapper = styled.section`
   }
 
   .social-media-share > p {
-   margin-top: 1em;
-   
+    margin-top: 1em;
   }
   @media (max-width: 992px) {
     .postContainer {
       width: 100%;
+    }
+
+    .blogname,
+    .btnContainer {
+      flex-direction: column;
+    }
+
+    .btn{
+      width: 80%;
     }
   }
 `;
