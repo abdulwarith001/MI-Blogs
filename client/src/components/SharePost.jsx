@@ -16,7 +16,7 @@ const SocialMediaShare = ({ url, title }) => {
     window.open(shareUrl, "_blank");
   };
   const shareOnWhatsapp = () => {
-    const shareUrl = `https://api.whatsapp.com/send?text=${title}${encodeURIComponent(url)}`
+    const shareUrl = `https://api.whatsapp.com/send?text=${title}%${encodeURIComponent(url)}`
     window.open(shareUrl, "_blank");
     };
     
