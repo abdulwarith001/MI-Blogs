@@ -25,6 +25,10 @@ const blogSchema = new mongoose.Schema(
       type: String,
       default: time,
     },
+    postedBy: {
+      type: String,
+      trim: true
+    }
   },
   { timestamps: true }
 );

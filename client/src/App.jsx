@@ -10,6 +10,7 @@ import {
   DashboardLayout,
   AllPosts,
   Dashboard,
+  SinglePost,
 } from "./pages";
 import PrivateRoute from "./components/ProtectRoute";
 
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: "register",
         element: <Register />,
+      },
+      {
+        path: '/:title',
+        element: <SinglePost/>
       },
       {
         path: "dashboard",

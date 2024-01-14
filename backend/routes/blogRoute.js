@@ -1,5 +1,11 @@
 import { Router } from "express";
-import { createBlogPost, getLatestBlogPost } from "../controllers/blogController.js";
+import {
+  createBlogPost,
+  deletePostById,
+  getLatestBlogPost,
+  getOwnersBlogPost,
+  getPostByName,
+} from "../controllers/blogController.js";
 const router = Router();
 import { validateBlogInput } from "../middlewares/validateMiddleware.js";
 import authUser from "../middlewares/authMiddleware.js";
@@ -18,5 +24,9 @@ router.post(
 );
 
 router.get('/latest', getLatestBlogPost)
+router.get('/',authUser, getOwnersBlogPost)
+
+router.get("/single", getPostByName);
+router.delete("/:id", deletePostById)
 
 export default router;

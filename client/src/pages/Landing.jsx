@@ -1,12 +1,31 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {Logo, Post} from '../components'
 import Wrapper from '../assets/wrappers/Landing'
 import illustration from '../assets/images/welcome.svg'
 import { Link } from 'react-router-dom'
+import {useGetLatestBlogMutation} from '../slices/blogApiSlice'
+import Loader from '../components/Loading'
 
 const Landing = () => {
+  const [posts, setPosts] = useState([])
+  const [blogs, {isLoading}] = useGetLatestBlogMutation()
+
+ const getPosts = async () => {
+   try {
+     const response = await blogs().unwrap();
+     setPosts(response)
+   } catch (error) {
+     console.log(error);
+   }
+ };
+
+
+  useEffect(() => {
+    getPosts()
+  }, [])
   return (
     <Wrapper>
+      {isLoading && <Loader text="Abeg clam down, we dey load post" />}
       <nav>
         <Logo />
       </nav>
@@ -38,11 +57,19 @@ const Landing = () => {
           <div className="headerText">
             Popular posts <div></div>
           </div>
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
+          {posts.map((post) => {
+            const { title, content, _id, image, created, postedBy } = post;
+            return (
+              <Post
+                title={title}
+                content={content}
+                image={image.url}
+                date={created}
+                postedBy={postedBy}
+                key={_id}
+              />
+            );
+          })}
         </section>
       </div>
     </Wrapper>

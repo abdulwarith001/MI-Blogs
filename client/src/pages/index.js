@@ -7,6 +7,7 @@ import DashboardLayout from './DashboardLayout'
 import CreatePost from './CreatePost'
 import AllPosts from "./AllPosts";
 import Dashboard from "./Dashboard";
+import SinglePost from "./SinglePost";
 
 export {
   HomeLayout,
@@ -18,4 +19,5 @@ export {
   DashboardLayout,
   AllPosts,
   Dashboard,
+  SinglePost,
 };

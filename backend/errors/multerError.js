@@ -2,7 +2,6 @@ import { MulterImageError } from "./customErrors.js";
 
 // Error handling middleware for Multer
 const multerErrorHandling = (err, req, res, next) => {
-  console.log(err)
   if (err.name === "MulterError") {
     if (err.code === "LIMIT_FILE_SIZE") {
       throw new MulterImageError("File size exceeded");

@@ -50,9 +50,15 @@ const Register = () => {
     }
   };
 
-  const handleChange = (e) => {
-    setData({ ...data, [e.target.name]: e.target.value });
-  };
+ const handleChange = (e) => {
+   setData({
+     ...data,
+     [e.target.name]:
+       e.target.name === "blogName"
+         ? e.target.value.replace(/\s+/g, "_")
+         : e.target.value,
+   });
+ };
   return (
     <Wrapper>
       {isLoading && <Loader text="creating your account..." />}

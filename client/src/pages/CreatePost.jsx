@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import Wrapper from "../assets/wrappers/CreatePost";
-import { Form } from "react-router-dom";
+import { Form, useNavigate } from "react-router-dom";
 import { Input, Html5Editor } from "../components";
 import { useCreatePostMutation } from "../slices/blogApiSlice";
 import Loader from "../components/Loading";
+
 
 const CreatePost = () => {
   const [create_blog, {isLoading}] = useCreatePostMutation();
@@ -11,7 +12,8 @@ const CreatePost = () => {
   const [title, setTitle] = useState('')
   const [image, setImage] = useState([])
   const [errorMsg, setErrorMsg] = useState('')
-  const [successMsg, setSuccessMsg] = useState("");
+  // const [successMsg, setSuccessMsg] = useState("");
+  const navigate = useNavigate()
 
   const handleEditorDataChange = (data) => {
     setEditorContent(data);
@@ -30,12 +32,7 @@ const CreatePost = () => {
       }
 
      const res = await create_blog(formData).unwrap();
-     console.log(res)
-     setSuccessMsg('Blog upload success...')
-     setErrorMsg('')
-     setTitle('')
-     setEditorContent('')
-     setImage([])
+     navigate('/dashboard/posts')
    } catch (error) {
       setErrorMsg(error?.data?.message || error.error);
    }
@@ -51,7 +48,7 @@ const CreatePost = () => {
       {isLoading && <Loader text="Creating post..." />}
       <h4>Create new Post</h4>
       {errorMsg && <div className="alert alert-danger">{errorMsg}</div>}
-      {successMsg && <div className="alert alert-success">{successMsg}</div>}
+      {/* {successMsg && <div className="alert alert-success">{successMsg}</div>} */}
 
       <form onSubmit={handleSubmit}>
         <div className="input-wrapper">
