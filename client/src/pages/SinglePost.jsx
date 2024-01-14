@@ -37,6 +37,13 @@ const postUrl = `${window.location.origin}${location.pathname}`;
 
   return (
     <Wrapper>
+      {data && (
+        <Helmet>
+          <meta property="og:title" content={data.title} />
+          <meta property="og:description" content={data.title} />
+          <meta property="og:url" content={data.image.url} />
+        </Helmet>
+      )}
       {isLoading && <Loader text="Post dey come..." />}
 
       <nav>
@@ -55,7 +62,12 @@ const postUrl = `${window.location.origin}${location.pathname}`;
         {data.title && <h2>{data.title}</h2>}
         {data.content && <div className="content">{parse(data.content)}</div>}
 
-        {data.content && <SocialMediaShare title={`Kindly read this post by "${data.postedBy}" on MI Blogs website`} url={postUrl} />}
+        {data.content && (
+          <SocialMediaShare
+            title={`Kindly read this post by "${data.postedBy}" on MI Blogs website`}
+            url={postUrl}
+          />
+        )}
       </section>
     </Wrapper>
   );

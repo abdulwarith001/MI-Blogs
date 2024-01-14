@@ -36,11 +36,7 @@ const SocialMediaShare = ({ url, title }) => {
   return (
     <div className="social-media-share">
       {/* Open Graph Meta Tags */}
-      <Helmet>
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={title} />
-        <meta property="og:url" content={url} />
-      </Helmet>
+     
 
       <p>Click links below to share this post on your socials</p>
       <div className="btnContainer">
