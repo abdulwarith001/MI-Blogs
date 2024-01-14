@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 
 const SocialMediaShare = ({ url, title }) => {
@@ -15,11 +16,14 @@ const SocialMediaShare = ({ url, title }) => {
     )}&text=${encodeURIComponent(title)}`;
     window.open(shareUrl, "_blank");
   };
+
   const shareOnWhatsapp = () => {
-    const shareUrl = `https://api.whatsapp.com/send?text=${title}%${encodeURIComponent(url)}`
+    const shareUrl = `https://api.whatsapp.com/send?text=${title}%${encodeURIComponent(
+      url
+    )}`;
     window.open(shareUrl, "_blank");
-    };
-    
+  };
+
   const shareOnLinkedin = () => {
     const shareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(
       url
@@ -29,6 +33,13 @@ const SocialMediaShare = ({ url, title }) => {
 
   return (
     <div className="social-media-share">
+      {/* Open Graph Meta Tags */}
+      <Helmet>
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={title} />
+        <meta property="og:url" content={url} />
+      </Helmet>
+
       <p>Click links below to share this post on your socials</p>
       <div className="btnContainer">
         <button onClick={shareOnFacebook} className="btn">
