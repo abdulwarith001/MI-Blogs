@@ -18,11 +18,13 @@ const SocialMediaShare = ({ url, title }) => {
   };
 
   const shareOnWhatsapp = () => {
-    const shareUrl = `https://api.whatsapp.com/send?text=${title}%${encodeURIComponent(
-      url
+    const message = `${title}\n${url}`;
+    const shareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(
+      message
     )}`;
     window.open(shareUrl, "_blank");
   };
+
 
   const shareOnLinkedin = () => {
     const shareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(
