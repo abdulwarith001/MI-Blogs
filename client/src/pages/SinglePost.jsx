@@ -38,7 +38,7 @@ const postUrl = `${window.location.origin}${location.pathname}`;
 
   return (
     <Wrapper>
-      {data && (
+      {data.title && (
         <Helmet>
           <meta property="og:title" content={data.title} />
           <meta property="og:description" content={data.title} />
