@@ -17,7 +17,7 @@ export const getLatestBlogPost = async (req, res) => {
 
 export const getOwnersBlogPost = async (req, res) => {
     const filter = {createdBy: req.user._id}
-    const blogs = await Blog.find(filter)
+    const blogs = await Blog.find(filter).sort('-createdAt')
     if (blogs.length < 1) throw new NotFoundError("No blog posts is available");
     res.status(200).json({total: blogs.length, data:blogs})
 };

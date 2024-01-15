@@ -14,15 +14,12 @@ const SinglePost = () => {
   const [data, setData] = useState({});
   const location = useLocation();
   const url = `${location.pathname}${location.search}`;
-  // const postUrl = `${location.origin}${location.pathname}`;
 const postUrl = `${window.location.origin}${location.pathname}`;
 
   const getPost = async () => {
     try {
-      console.log(postUrl);
       const res = await blog(title).unwrap();
       setData(res);
-      console.log(res);
     } catch (error) {
       console.log(error);
     }
@@ -41,7 +38,7 @@ const postUrl = `${window.location.origin}${location.pathname}`;
           <meta property="og:url" content={data.image.url} />
         </Helmet>
       )}
-      {isLoading && <Loader text="Post dey come..." />}
+      {isLoading && <Loader text="Post dey on the way..." />}
 
       <nav>
         <Logo />

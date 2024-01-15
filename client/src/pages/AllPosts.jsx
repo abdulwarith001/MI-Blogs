@@ -1,44 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import Wrapper from '../assets/wrappers/AllPosts'
 import AllPost from '../components/AllPosts'
-import { useGetOwnerBlogMutation } from '../slices/blogApiSlice'
-import Loader from '../components/Loading'
 const AllPosts = () => {
-  const [get_blogs, { isLoading }] = useGetOwnerBlogMutation();
-  const [response, setResponse] = useState([])
   const [total, setTotal] = useState('')
+  const [errorMsg, setErrorMsg] = useState('')
+  const [successMsg, setSuccessMsg] = useState('')
 
-  const getBlogs = async () => {
-    try {
-      const res = await get_blogs().unwrap()
-      setResponse(res.data);
-      setTotal(res.total)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  useEffect(() => {
-    getBlogs()
-  }, [])
   return (
     <Wrapper>
-      {isLoading && <Loader text="Loading your posts" />}
-      <h4>{total} posts was found</h4>
+      {total && <h4>{total} posts was found</h4>}
+      {errorMsg && <div className="alert alert-danger">{errorMsg}</div>}
+      {successMsg && <div className="alert alert-success">{successMsg}</div>}
 
       <article>
-        {response.map((blog) => {
-          const { title, image, content, _id } = blog;
-          return (
-            <AllPost
-              title={title}
-              image={image.url}
-              content={content}
-              id={_id}
-              key={_id}
-            />
-          );
-        })}
+        <AllPost
+          setTotal={setTotal}
+          setErrorMsg={setErrorMsg}
+          setSuccessMsg={setSuccessMsg}
+        />
       </article>
     </Wrapper>
   );

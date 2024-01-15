@@ -171,10 +171,10 @@ a {
     text-decoration: none;
 }
 
-ul {
+/* ul {
     list-style-type: none;
     padding: 0;
-}
+} */
 
 .img {
     width: 100%;
@@ -343,6 +343,14 @@ button:disabled {
     max-width: var(--max-width);
     margin: 0 auto;
 }
+
+/* ul {
+    list-style-type: disc;
+}
+
+ol {
+    list-style-type: lower-alpha;
+} */
 
 /* BUTTONS AND BADGES */
 .pending {

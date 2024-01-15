@@ -38,4 +38,4 @@ export const userApiSlice = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useCreatePostMutation, useGetLatestBlogMutation, useGetOwnerBlogMutation, useGetSingleBlogMutation } = userApiSlice;
+export const { useCreatePostMutation, useGetLatestBlogMutation, useGetOwnerBlogMutation, useGetSingleBlogMutation, useDeleteBlogPostMutation } = userApiSlice;

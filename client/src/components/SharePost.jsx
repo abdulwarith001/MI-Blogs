@@ -37,7 +37,7 @@ const SocialMediaShare = ({ url, title }) => {
       {/* Open Graph Meta Tags */}
      
 
-      <p>Click links below to share this post on your socials</p>
+      <p>Pls support this page by sharing...</p>
       <div className="btnContainer">
         <button onClick={shareOnFacebook} className="btn">
           <FaFacebook />

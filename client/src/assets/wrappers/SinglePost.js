@@ -64,6 +64,7 @@ const Wrapper = styled.section`
   .social-media-share > p {
     margin-top: 1em;
   }
+
   @media (max-width: 992px) {
     .postContainer {
       width: 100%;
@@ -74,7 +75,7 @@ const Wrapper = styled.section`
       flex-direction: column;
     }
 
-    .btn{
+    .btn {
       width: 80%;
     }
   }
