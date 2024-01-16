@@ -58,7 +58,7 @@ const postUrl = `${window.location.origin}${location.pathname}`;
 
         {data.content && (
           <SocialMediaShare
-            title={`Kindly read this post by "${data.postedBy}" on MI Blogs website`}
+            title={`Hey there, I just dropped a post on MI Blogs website. Pls support by reading @${data.postedBy}`}
             url={postUrl}
           />
         )}
