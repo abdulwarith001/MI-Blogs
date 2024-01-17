@@ -33,8 +33,7 @@ const DraggableCard = ({ id, icon, index, moveCard, value, reactions }) => {
     <div ref={(node) => ref(drop(node))} className="rateBtn">
       {icon}
       <span>
-        {reaction[value]}
-        {value}'s
+        {value} reaction
       </span>
     </div>
   );
