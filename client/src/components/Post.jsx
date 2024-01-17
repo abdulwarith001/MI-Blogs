@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import parse from "html-react-parser";
 
 const Post = ({ title, content, image, date, postedBy }) => {
+  const cleanedTitle = title.trim().replace(/\s+/g, "%20");
   return (
     <Wrapper>
       <div className="post-container">
@@ -18,7 +19,7 @@ const Post = ({ title, content, image, date, postedBy }) => {
           </div>
           <h1>{title}</h1>
           <div className="content">{parse(content)}</div>
-          <Link to={`/${title}`} className="see-more">
+          <Link to={`/${cleanedTitle}`} className="see-more">
             ...see more
             <FaCaretDown />
           </Link>

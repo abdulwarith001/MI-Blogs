@@ -5,8 +5,8 @@ import { useParams, useLocation } from "react-router-dom";
 import parse from "html-react-parser";
 import Logo from "../components/Logo";
 import SocialMediaShare from "../components/SharePost";
-import Loader from '../components/Loading'
-import { Helmet } from "react-helmet";
+import Loader from "../components/Loading";
+import Comment from "../components/Comment";
 
 const SinglePost = () => {
   const { title } = useParams();
@@ -14,11 +14,14 @@ const SinglePost = () => {
   const [data, setData] = useState({});
   const location = useLocation();
   const url = `${location.pathname}${location.search}`;
-const postUrl = `${window.location.origin}${location.pathname}`;
+  const postUrl = `${window.location.origin}${location.pathname}`;
+   const cleanedTitle = title.replace(/_/g, " ");
+   const encodedTitle = encodeURIComponent(cleanedTitle);
 
   const getPost = async () => {
     try {
-      const res = await blog(title).unwrap();
+      console.log(title)
+      const res = await blog(encodedTitle).unwrap();
       setData(res);
     } catch (error) {
       console.log(error);
@@ -31,13 +34,6 @@ const postUrl = `${window.location.origin}${location.pathname}`;
 
   return (
     <Wrapper>
-      {data.title && (
-        <Helmet>
-          <meta property="og:title" content={data.title} />
-          <meta property="og:description" content={data.title} />
-          <meta property="og:url" content={data.image.url} />
-        </Helmet>
-      )}
       {isLoading && <Loader text="Post dey on the way..." />}
 
       <nav>
@@ -55,6 +51,10 @@ const postUrl = `${window.location.origin}${location.pathname}`;
       <section className="postContainer">
         {data.title && <h2>{data.title}</h2>}
         {data.content && <div className="content">{parse(data.content)}</div>}
+        {/* <form> */}
+          <Comment />
+          {/* <button className="btn submit">Send comment</button> */}
+        {/* </form> */}
 
         {data.content && (
           <SocialMediaShare

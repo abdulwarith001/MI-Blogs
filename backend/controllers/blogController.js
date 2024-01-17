@@ -22,12 +22,20 @@ export const getOwnersBlogPost = async (req, res) => {
     res.status(200).json({total: blogs.length, data:blogs})
 };
 
-export const getPostByName = async(req, res)=>{
-    const filter = {title: req.query.title}
-    const blog = await Blog.findOne(filter)
-    if(!blog) throw new NotFoundError('This blog is unavailable')
-    res.status(200).json(blog)
-}
+export const getPostByName = async (req, res) => {
+  const decodedTitle = decodeURIComponent(req.query.title);
+
+  // Perform a case-insensitive search for similar titles
+  const filter = { title: new RegExp(decodedTitle, "i") };
+
+  const blog = await Blog.findOne(filter);
+
+  if (!blog) {
+    throw new NotFoundError("This blog is unavailable");
+  }
+
+  res.status(200).json(blog);
+};
 
 export const deletePostById = async (req, res) => { 
      const { id } = req.params;

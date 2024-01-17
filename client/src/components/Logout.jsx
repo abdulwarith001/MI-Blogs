@@ -18,7 +18,7 @@ const Logout = ({ name }) => {
       <div className="logout-container">
         {/* <FaUserCircle className="user-icon" /> */}
         <div className="menu" onClick={() => setShowLogout(!showLogout)}>
-          <p>Hi {name}</p>
+          <p>Hi, {name}</p>
 
           {showLogout ? (
             <FaCaretUp className="caret-icon" />

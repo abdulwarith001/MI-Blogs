@@ -10,7 +10,7 @@ const Html5Editor = ({ onDataChanged }) => {
     onDataChanged(value);
   };
 
-  const defaultEditorHeight = "150px"; // Adjust the default height as needed
+  const defaultEditorHeight = "200px"; // Adjust the default height as needed
 
   return (
     <ReactQuill
