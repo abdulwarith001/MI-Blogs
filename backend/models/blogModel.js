@@ -27,8 +27,15 @@ const blogSchema = new mongoose.Schema(
     },
     postedBy: {
       type: String,
-      trim: true
-    }
+      trim: true,
+    },
+    reactions: {
+        like: {
+          type: Number,
+          default: 0,
+        },
+        love: { type: Number, default: 0 },
+    },
   },
   { timestamps: true }
 );

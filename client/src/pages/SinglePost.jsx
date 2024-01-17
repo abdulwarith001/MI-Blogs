@@ -7,6 +7,7 @@ import Logo from "../components/Logo";
 import SocialMediaShare from "../components/SharePost";
 import Loader from "../components/Loading";
 import Comment from "../components/Comment";
+import AllComments from "../components/AllComments";
 
 const SinglePost = () => {
   const { title } = useParams();
@@ -20,7 +21,6 @@ const SinglePost = () => {
 
   const getPost = async () => {
     try {
-      console.log(title)
       const res = await blog(encodedTitle).unwrap();
       setData(res);
     } catch (error) {
@@ -51,11 +51,11 @@ const SinglePost = () => {
       <section className="postContainer">
         {data.title && <h2>{data.title}</h2>}
         {data.content && <div className="content">{parse(data.content)}</div>}
-        {/* <form> */}
-          <Comment />
-          {/* <button className="btn submit">Send comment</button> */}
-        {/* </form> */}
+        <h5>Drag any reaction to the circle to rate</h5>
+        <br />
+        {/* <Comment /> */}
 
+        {data._id && <AllComments id={data._id} reactions={data.reactions} />}
         {data.content && (
           <SocialMediaShare
             title={`Hey there, I just dropped a post on MI Blogs website. Pls support by reading @${data.postedBy}`}

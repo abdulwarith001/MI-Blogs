@@ -45,3 +45,28 @@ export const deletePostById = async (req, res) => {
      }
      res.status(200).json({ message: "Blog deleted Successfully" });
 }
+
+export const createReaction = async (req, res) => {
+  const { postId } = req.query;
+  const { reaction } = req.body;
+
+  // Validate the reaction or handle invalid cases
+  const validReactions = ["like", "love"]; // Add other valid reactions as needed
+  if (!validReactions.includes(reaction)) {
+    return res.status(400).json({ error: "Invalid reaction type" });
+  }
+
+  // Update the post in your database with the incremented reaction count
+  const updatedBlog = await Blog.findByIdAndUpdate(
+    postId,
+    { $inc: { [`reactions.${reaction}`]: 1 } },
+    { new: true }
+  );
+
+  if (!updatedBlog) {
+    return res.status(404).json({ error: "Blog not found" });
+  }
+
+  // Send the updated Blog as a response
+  res.status(200).json(updatedBlog);
+}

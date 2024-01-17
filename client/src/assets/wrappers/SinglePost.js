@@ -64,7 +64,9 @@ const Wrapper = styled.section`
   .social-media-share > p {
     margin-top: 1em;
   }
-
+h5{
+  font-weight: bolder;
+}
   @media (max-width: 992px) {
     .postContainer {
       width: 100%;

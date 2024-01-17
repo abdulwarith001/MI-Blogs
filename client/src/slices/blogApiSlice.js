@@ -34,8 +34,16 @@ export const userApiSlice = apiSlice.injectEndpoints({
         url: `${BLOG_URL}/${data}`,
         method: 'DELETE',
       })
+    }),
+    createReaction: builder.mutation({
+      query: (data)=>({
+        url:`${BLOG_URL}/react`,
+      method: 'PATCH',
+        body: { reaction: data.reaction },
+      params: {postId: data.postId}
+      })
     })
   }),
 });
 
-export const { useCreatePostMutation, useGetLatestBlogMutation, useGetOwnerBlogMutation, useGetSingleBlogMutation, useDeleteBlogPostMutation } = userApiSlice;
+export const { useCreatePostMutation, useGetLatestBlogMutation, useGetOwnerBlogMutation, useGetSingleBlogMutation, useDeleteBlogPostMutation, useCreateReactionMutation } = userApiSlice;

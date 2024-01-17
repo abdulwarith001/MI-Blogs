@@ -5,6 +5,7 @@ import {
   getLatestBlogPost,
   getOwnersBlogPost,
   getPostByName,
+  createReaction
 } from "../controllers/blogController.js";
 const router = Router();
 import { validateBlogInput } from "../middlewares/validateMiddleware.js";
@@ -28,5 +29,6 @@ router.get('/',authUser, getOwnersBlogPost)
 
 router.get("/single", getPostByName);
 router.delete("/:id", deletePostById)
+router.patch('/react',authUser, createReaction)
 
 export default router;
