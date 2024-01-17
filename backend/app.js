@@ -19,14 +19,14 @@ app.use(cors())
 
 
 // Use the join function to resolve paths
-app.use(express.static(join(__dirname, "../public")));
+app.use(express.static(join(__dirname, "../client/dist")));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 
 app.use("/api/auth", authRoute);
 app.use("/api/blog", blogRoute);
 app.get("*", (req, res) => {
-  res.sendFile(join(__dirname, "../public", "index.html"));
+  res.sendFile(join(__dirname, "../client/dist", "index.html"));
 });
 
 

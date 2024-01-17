@@ -1,7 +1,6 @@
 import React from 'react'
 import Wrapper from '../assets/wrappers/Post';
-import sample from "../assets/images/sample.jpg";
-import { FaLongArrowAltRight, FaCaretDown } from "react-icons/fa";
+import { FaCaretDown } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import parse from "html-react-parser";
 
