@@ -35,6 +35,7 @@ const blogSchema = new mongoose.Schema(
           default: 0,
         },
         love: { type: Number, default: 0 },
+        excellent: { type: Number, default: 0 },
     },
   },
   { timestamps: true }

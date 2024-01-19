@@ -1,0 +1,23 @@
+/* src/components/HeartIcon.css */
+.heart-icon {
+    width: 64px;
+    height: 64px;
+    transition: transform 0.1s ease-in-out;
+}
+
+.heart-icon.beating {
+    transform: scale(1.1);
+    animation: heartbeat 1s infinite;
+}
+
+@keyframes heartbeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}

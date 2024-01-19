@@ -51,7 +51,7 @@ export const createReaction = async (req, res) => {
   const { reaction } = req.body;
 
   // Validate the reaction or handle invalid cases
-  const validReactions = ["like", "love"]; // Add other valid reactions as needed
+  const validReactions = ["like", "love", "excellent"]; // Add other valid reactions as needed
   if (!validReactions.includes(reaction)) {
     return res.status(400).json({ error: "Invalid reaction type" });
   }

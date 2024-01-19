@@ -6,8 +6,7 @@ import parse from "html-react-parser";
 import Logo from "../components/Logo";
 import SocialMediaShare from "../components/SharePost";
 import Loader from "../components/Loading";
-import Comment from "../components/Comment";
-import AllComments from "../components/AllComments";
+import Reaction from "../components/Reaction";
 
 const SinglePost = () => {
   const { title } = useParams();
@@ -51,11 +50,11 @@ const SinglePost = () => {
       <section className="postContainer">
         {data.title && <h2>{data.title}</h2>}
         {data.content && <div className="content">{parse(data.content)}</div>}
-        <h5>Drag any reaction to the circle to rate</h5>
+        <h5>Select any reaction to rate post...</h5>
         <br />
         {/* <Comment /> */}
 
-        {data._id && <AllComments id={data._id} reactions={data.reactions} />}
+        {data._id && <Reaction id={data._id} />}
         {data.content && (
           <SocialMediaShare
             title={`Hey there, I just dropped a post on MI Blogs website. Pls support by reading @${data.postedBy}`}
