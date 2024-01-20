@@ -90,7 +90,7 @@ const EditPost = () => {
             label="Cover Photo"
             name="image"
             value={image}
-            description="Kindly note that this will overide the previous cover photo"
+            description="Kindly note that this will overide the previous cover photo (not required)"
             onChange={handleImageChange}
             notRequired
           />
