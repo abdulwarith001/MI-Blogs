@@ -58,7 +58,7 @@ const AllPosts = ({setTotal, setErrorMsg, setSuccessMsg}) => {
             <div className="content">{parse(content)}</div>
 
             <div className="btnWrapper">
-              <button className="btn">
+              <button className="btn" onClick={()=> navigate(`/dashboard/edit/${_id}`)}>
                 <FaRegEdit />
                 Edit
               </button>

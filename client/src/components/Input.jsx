@@ -9,10 +9,12 @@ const FormInput = ({
   onChange,
   className,
   notRequired,
+  description
 }) => {
   return (
     <div className="input-wrapper">
       <label htmlFor={name}>{label}</label>
+      <em>{description }</em>
       {type === "file" ? (
         <input
           type={type}

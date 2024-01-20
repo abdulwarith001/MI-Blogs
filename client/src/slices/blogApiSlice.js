@@ -42,8 +42,22 @@ export const userApiSlice = apiSlice.injectEndpoints({
         body: { reaction: data.reaction },
       params: {postId: data.postId}
       })
+    }),
+    getBlogById: builder.mutation({
+      query: (data) => ({
+        url: `${BLOG_URL}/single/${data}`,
+        method: "GET"
+      })
+    }),
+    updateBlogPost: builder.mutation({
+      query: (data) => ({
+        url: `${BLOG_URL}/update`,
+        method: 'PATCH',
+        body: data,
+        params: {id: data.id}
+      })
     })
   }),
 });
 
-export const { useCreatePostMutation, useGetLatestBlogMutation, useGetOwnerBlogMutation, useGetSingleBlogMutation, useDeleteBlogPostMutation, useCreateReactionMutation } = userApiSlice;
+export const { useCreatePostMutation, useGetLatestBlogMutation, useGetOwnerBlogMutation, useGetSingleBlogMutation, useDeleteBlogPostMutation, useCreateReactionMutation, useGetBlogByIdMutation, useUpdateBlogPostMutation } = userApiSlice;

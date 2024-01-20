@@ -1,16 +1,16 @@
 import Blog from '../models/blogModel.js'
-import { NotFoundError } from '../errors/customErrors.js';
+import { BadRequestError, NotFoundError } from '../errors/customErrors.js';
 
 export const createBlogPost = async (req, res) => {
     req.body.createdBy = req.user._id;
     req.body.postedBy = req.user.blogName
-    req.body.image = req.image
+    // req.body.image = req.image
     const blog = await Blog.create(req.body)
     res.status(201).json(blog)
 }
 
 export const getLatestBlogPost = async (req, res) => {
-    const blog = await Blog.find({}).sort('-createdAt').limit(5)
+    const blog = await Blog.find({}).sort('-createdAt').limit(20)
     if(!blog) throw new NotFoundError('No blog posts is available')
     res.status(200).json(blog)
 }
@@ -52,9 +52,7 @@ export const createReaction = async (req, res) => {
 
   // Validate the reaction or handle invalid cases
   const validReactions = ["like", "love", "excellent"]; // Add other valid reactions as needed
-  if (!validReactions.includes(reaction)) {
-    return res.status(400).json({ error: "Invalid reaction type" });
-  }
+  if (!validReactions.includes(reaction)) throw new BadRequestError('Invalid reaction sent (like, love, excellent only)')
 
   // Update the post in your database with the incremented reaction count
   const updatedBlog = await Blog.findByIdAndUpdate(
@@ -63,10 +61,22 @@ export const createReaction = async (req, res) => {
     { new: true }
   );
 
-  if (!updatedBlog) {
-    return res.status(404).json({ error: "Blog not found" });
-  }
+  if (!updatedBlog) throw new NotFoundError('Blog not found')
 
   // Send the updated Blog as a response
   res.status(200).json(updatedBlog);
+}
+
+export const getPostById = async(req, res) => {
+  const { id } = req.params
+  const blog = await Blog.findById(id)
+  if (!blog) throw new NotFoundError('Blog unavailable')
+  res.status(200).json(blog)
+}
+
+export const updatePost = async (req, res) => {
+  const filter = req.body.id
+  const blog = await Blog.findByIdAndUpdate(filter, req.body, { new: true })
+  if (!blog) throw new NotFoundError('Blog not found')
+  res.status(200).json(blog)
 }

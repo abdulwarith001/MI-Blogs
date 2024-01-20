@@ -11,10 +11,9 @@ import {
   AllPosts,
   Dashboard,
   SinglePost,
+  EditPost
 } from "./pages";
 import PrivateRoute from "./components/ProtectRoute";
-
-// ... (imports remain the same)
 
 const router = createBrowserRouter([
   {
@@ -58,6 +57,10 @@ const router = createBrowserRouter([
             path: "create-post",
             element: <CreatePost />,
           },
+          {
+            path: 'edit/:id',
+            element: <EditPost />
+          }
         ],
       },
     ],

@@ -40,19 +40,19 @@ const Reaction = ({ id }) => {
         <img src={Excellent} alt="Excellent" />
         <p>
           {reactionNum
-            ? `Rated by ${reactionNum.excellent} people`
+            ? `Rated ${reactionNum.excellent} times`
             : "Excellent"}
         </p>
       </div>
       <div className="img-wrapper" onClick={() => createReaction("love")}>
         <img src={Love} alt="Love" />
         <p>
-          {reactionNum ? `Rated by ${reactionNum.love} people` : "Love this!"}
+          {reactionNum ? `Rated ${reactionNum.love} times` : "Love this!"}
         </p>
       </div>
       <div className="img-wrapper" onClick={() => createReaction("like")}>
         <img src={Like} alt="Like" />
-        <p>{reactionNum ? `Rated by ${reactionNum.like} people` : "Like!"}</p>
+        <p>{reactionNum ? `Rated ${reactionNum.like} times` : "Like!"}</p>
       </div>
     </Wrapper>
   );

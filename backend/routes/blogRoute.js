@@ -5,7 +5,9 @@ import {
   getLatestBlogPost,
   getOwnersBlogPost,
   getPostByName,
-  createReaction
+  createReaction,
+  getPostById,
+  updatePost
 } from "../controllers/blogController.js";
 const router = Router();
 import { validateBlogInput } from "../middlewares/validateMiddleware.js";
@@ -29,6 +31,9 @@ router.get('/',authUser, getOwnersBlogPost)
 
 router.get("/single", getPostByName);
 router.delete("/:id", deletePostById)
-router.patch('/react',authUser, createReaction)
+router.patch('/react', authUser, createReaction)
+router.get('/single/:id', authUser, getPostById)
+
+router.patch('/update', upload.single('image'), multerError, authUser, cloudinaryUpload, updatePost)
 
 export default router;

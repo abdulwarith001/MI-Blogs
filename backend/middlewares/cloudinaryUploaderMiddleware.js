@@ -30,7 +30,7 @@ const uploadImage = async (req, res, next) => {
       return;
     }
 
-    req.image = uploadedImages;
+    req.body.image = uploadedImages;
   }
 
   next();
