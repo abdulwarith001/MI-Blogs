@@ -7,7 +7,8 @@ import {
   getPostByName,
   createReaction,
   getPostById,
-  updatePost
+  updatePost,
+  getBlogStats
 } from "../controllers/blogController.js";
 const router = Router();
 import { validateBlogInput } from "../middlewares/validateMiddleware.js";
@@ -35,5 +36,7 @@ router.patch('/react', authUser, createReaction)
 router.get('/single/:id', authUser, getPostById)
 
 router.patch('/update', upload.single('image'), multerError, authUser, cloudinaryUpload, updatePost)
+
+router.get('/stats',authUser, getBlogStats)
 
 export default router;

@@ -5,6 +5,7 @@ import illustration from '../assets/images/welcome.svg'
 import { Link } from 'react-router-dom'
 import {useGetLatestBlogMutation} from '../slices/blogApiSlice'
 import Loader from '../components/Loading'
+import { Helmet } from "react-helmet";
 
 const Landing = () => {
   const [posts, setPosts] = useState([])
@@ -26,6 +27,17 @@ const Landing = () => {
   return (
     <Wrapper>
       {isLoading && <Loader text="Abeg clam down, we dey load post" />}
+      <Helmet>
+        <title>MI Blogs </title>
+        <meta
+          name="description"
+          content="With MI Blogs, your data is safe and you can delete it anytime you want..."
+        />
+        <meta name="page-topic" content="Media" />
+        <meta name="page-type" content="Blogging" />
+        <meta name="audience" content="Everyone" />
+        <meta name="robots" content="index, follow" />
+      </Helmet>
       <nav>
         <Logo />
       </nav>

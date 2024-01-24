@@ -19,45 +19,61 @@ export const userApiSlice = apiSlice.injectEndpoints({
     getOwnerBlog: builder.mutation({
       query: () => ({
         url: `${BLOG_URL}/`,
-        method: 'GET'
-      })
+        method: "GET",
+      }),
     }),
     getSingleBlog: builder.mutation({
-      query: (data)=>({
+      query: (data) => ({
         url: `${BLOG_URL}/single`,
-        method: 'GET',
-        params: {title: data}
-      })
+        method: "GET",
+        params: { title: data },
+      }),
     }),
     deleteBlogPost: builder.mutation({
-      query: (data)=>({
+      query: (data) => ({
         url: `${BLOG_URL}/${data}`,
-        method: 'DELETE',
-      })
+        method: "DELETE",
+      }),
     }),
     createReaction: builder.mutation({
-      query: (data)=>({
-        url:`${BLOG_URL}/react`,
-      method: 'PATCH',
+      query: (data) => ({
+        url: `${BLOG_URL}/react`,
+        method: "PATCH",
         body: { reaction: data.reaction },
-      params: {postId: data.postId}
-      })
+        params: { postId: data.postId },
+      }),
     }),
     getBlogById: builder.mutation({
       query: (data) => ({
         url: `${BLOG_URL}/single/${data}`,
-        method: "GET"
-      })
+        method: "GET",
+      }),
     }),
     updateBlogPost: builder.mutation({
       query: (data) => ({
         url: `${BLOG_URL}/update`,
-        method: 'PATCH',
+        method: "PATCH",
         body: data,
-        params: {id: data.id}
-      })
-    })
+        params: { id: data.id },
+      }),
+    }),
+    getBlogStats: builder.mutation({
+      query: () => ({
+        url: `${BLOG_URL}/stats`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
-export const { useCreatePostMutation, useGetLatestBlogMutation, useGetOwnerBlogMutation, useGetSingleBlogMutation, useDeleteBlogPostMutation, useCreateReactionMutation, useGetBlogByIdMutation, useUpdateBlogPostMutation } = userApiSlice;
+export const {
+  useCreatePostMutation,
+  useGetLatestBlogMutation,
+  useGetOwnerBlogMutation,
+  useGetSingleBlogMutation,
+  useDeleteBlogPostMutation,
+  useCreateReactionMutation,
+  useGetBlogByIdMutation,
+  useUpdateBlogPostMutation,
+  useGetBlogStatsMutation,
+} = userApiSlice;

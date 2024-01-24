@@ -7,6 +7,8 @@ import Logo from "../components/Logo";
 import SocialMediaShare from "../components/SharePost";
 import Loader from "../components/Loading";
 import Reaction from "../components/Reaction";
+import { Helmet } from "react-helmet";
+
 
 const SinglePost = () => {
   const { title } = useParams();
@@ -34,7 +36,18 @@ const SinglePost = () => {
   return (
     <Wrapper>
       {isLoading && <Loader text="Post dey on the way..." />}
-
+      <Helmet>
+        {data.title && <title>{data.title}</title>}
+        <meta
+          name="description"
+          content="With MI Blogs, your data is safe and you can delete it anytime you want..."
+        />
+        <meta name="page-topic" content="Media" />
+        <meta name="page-type" content="Blogging" />
+        <meta name="audience" content="Everyone" />
+        <meta name="robots" content="index, follow" />
+        {data.image && <meta property="og:image" content={data.image.url} />}
+      </Helmet>
       <nav>
         <Logo />
       </nav>
