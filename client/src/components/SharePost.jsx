@@ -1,7 +1,9 @@
 import React from "react";
 import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from "react-icons/fa";
+import { Helmet } from "react-helmet";
 
-const SocialMediaShare = ({ url, title }) => {
+
+const SocialMediaShare = ({ url, title, image, title2 }) => {
   const shareOnFacebook = () => {
     const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
       url
@@ -35,7 +37,18 @@ const SocialMediaShare = ({ url, title }) => {
   return (
     <div className="social-media-share">
       {/* Open Graph Meta Tags */}
-     
+      <Helmet>
+        {title && <title>{title2}</title>}
+        <meta
+          name="description"
+          content="With MI Blogs, your data is safe and you can delete it anytime you want..."
+        />
+        <meta name="page-topic" content="Media" />
+        <meta name="page-type" content="Blogging" />
+        <meta name="audience" content="Everyone" />
+        <meta name="robots" content="index, follow" />
+        {image && <meta property="og:image" content={image} />}
+      </Helmet>
 
       <p>Pls support this page by sharing...</p>
       <div className="btnContainer">

@@ -71,7 +71,9 @@ const SinglePost = () => {
         {data.content && (
           <SocialMediaShare
             title={`Hey there, I just dropped a post on MI Blogs website. Pls support by reading @${data.postedBy}`}
+            title2={data.title}
             url={postUrl}
+            image={data.image.url}
           />
         )}
       </section>
