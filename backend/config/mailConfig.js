@@ -1,5 +1,9 @@
 // const nodemailer = require("nodemailer");
 import nodemailer from 'nodemailer'
+import * as path from "path";
+
+const __filename = new URL(import.meta.url).pathname;
+const __dirname = path.dirname(__filename);
 
 const createTransporter = () => {
   return nodemailer.createTransport({
@@ -27,6 +31,8 @@ const createMail = async (transporter, mailOptions) => {
 const sendMail = async (subject, receiver, html) => {
   const transporter = createTransporter();
 
+  const imagePath = path.join(__dirname, "../utils/welcome.jpg");
+
   const mailOptions = {
     from: `"MI Blogs" <${process.env.MAIL_USERNAME}>`,
     to: receiver,
@@ -34,8 +40,14 @@ const sendMail = async (subject, receiver, html) => {
     html: html,
   };
 
-  const emailSent = await createMail(transporter, mailOptions);
-  return emailSent;
+  try {
+    const emailSent = await createMail(transporter, mailOptions);
+    return emailSent;
+  } catch (error) {
+    console.error("Error sending email:", error);
+    return false; // or handle the error appropriately
+  }
 };
+
 
 export default sendMail

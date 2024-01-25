@@ -4,11 +4,12 @@ import { FaFire, FaHeart, FaThumbsUp } from "react-icons/fa";
 import { useGetBlogStatsMutation } from "../slices/blogApiSlice";
 import BlogChart from "../components/BlogChart";
 import { Helmet } from "react-helmet";
+import Loader from '../components/Loading'
 
 const Dashboard = () => {
   const [stats, { isLoading }] = useGetBlogStatsMutation();
   const [reactions, setReactions] = useState(null);
-  const [blogs, setBlogs] = useState(null);
+  const [blogs, setBlogs] = useState([]);
 
   const getStats = async () => {
     try {
@@ -25,6 +26,7 @@ const Dashboard = () => {
   }, []);
   return (
     <Wrapper>
+      {isLoading && <Loader text="Loading stats" />}
       <Helmet>
         <title>MI Blogs | Dashboard</title>
         <meta
@@ -36,11 +38,11 @@ const Dashboard = () => {
         <meta name="audience" content="Everyone" />
         <meta name="robots" content="index, follow" />
       </Helmet>
-      <div className="total">Total reactions on this blog</div>
+      <h4 className="total">Total reactions on this blog</h4>
       <article className="reactionContainer">
         <div className="reaction">
           <div>
-            {reactions && <h2>{reactions.excellent}</h2>}
+            {reactions && <h2>{reactions.excellent} </h2>}
             <div className="icon">
               <FaFire />
             </div>
@@ -69,7 +71,13 @@ const Dashboard = () => {
         </div>
       </article>
       <h4 className="monthHeader">Total Blogs Monthly</h4>
-      <BlogChart data={blogs} />
+      {blogs.length < 1 ? (
+        <div className="alert alert-success">
+          Start creating posts now to show <strong>stats</strong>
+        </div>
+      ) : (
+        <BlogChart data={blogs} />
+      )}
     </Wrapper>
   );
 };

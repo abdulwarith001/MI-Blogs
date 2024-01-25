@@ -89,26 +89,38 @@ export const updatePost = async (req, res) => {
 export const getBlogStats = async (req, res) => {
   const userId = req.user._id;
 
-  const reactionStats = await Blog.aggregate([
-    {
-      $match: {
-        createdBy: new mongoose.Types.ObjectId(userId),
-      },
-    },
-    {
-      $group: {
-        _id: null, // Group all documents together
-        like: { $sum: "$reactions.like" },
-        love: { $sum: "$reactions.love" },
-        excellent: { $sum: "$reactions.excellent" },
-      },
-    },
-  ]);
-  const reactions = {
-    like: reactionStats[0].like || 0,
-    love: reactionStats[0].love || 0,
-    excellent: reactionStats[0].excellent || 0,
-  };
+  const blog = await Blog.findOne({ createdBy: userId })
+  let reactions;
+  if (blog) {
+      const reactionStats = await Blog.aggregate([
+        {
+          $match: {
+            createdBy: new mongoose.Types.ObjectId(userId),
+          },
+        },
+        {
+          $group: {
+            _id: null, // Group all documents together
+            like: { $sum: "$reactions.like" },
+            love: { $sum: "$reactions.love" },
+            excellent: { $sum: "$reactions.excellent" },
+          },
+        },
+      ]);
+      reactions = {
+        like: reactionStats[0].like || 0,
+        love: reactionStats[0].love || 0,
+        excellent: reactionStats[0].excellent || 0,
+      };
+  } else {
+     reactions = {
+       like:0,
+       love:0,
+       excellent:0,
+     };
+  }
+
+
 
   let monthlyBlogs = await Blog.aggregate([
     {
