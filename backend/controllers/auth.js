@@ -9,7 +9,7 @@ export const register = async (req, res) => {
 
   const user = await User.create(req.body);
   const token = generateToken(res, user.id, user.role);
-  const html = `<h1>Hi ${user.name}, <br> Thank you registering on MI BLogs.</h1><br/><img src="https://res.cloudinary.com/dhu2u01nb/image/upload/v1706191714/fpzfdtrzcddyqnrr3nab.jpg" alt="Welcome image"/></br> <p>You can start blogging right away by clicking on the GET STARTED button on the homepage. You can also click the link below </p> <br> <a href="https://mi-blogs.onrender.com/dashboard"> START BLOGGING RIGHT AWAY!!!</a>`;
+  const html = `<h1>Hi ${user.name}, <br> Thank you registering on MI BLogs.</h1><br/><img src=${process.env.WELCOME_IMAGE} alt="Welcome image"/></br> <p>You can start blogging right away by clicking on the GET STARTED button on the homepage. You can also click the link below </p> <br> <a href="https://mi-blogs.onrender.com/dashboard"> START BLOGGING RIGHT AWAY!!!</a>`;
   const isMailSent = await sendMail("Welcome to MI Blogs.", user.email, html)
   const data = {
     _id: user._id,
