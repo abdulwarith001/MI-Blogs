@@ -9,6 +9,7 @@ import bodyParser from "body-parser";
 import {authRoute, blogRoute} from './routes/index.js'
 import { notFound, errorMiddleware } from "./middlewares/index.js";
 import cors from 'cors'
+import nodemailer from 'nodemailer'
 dotenv.config();
 const app = express();
 
@@ -25,6 +26,35 @@ app.use(bodyParser.urlencoded({extended: false}))
 
 app.use("/api/auth", authRoute);
 app.use("/api/blog", blogRoute);
+
+app.get('/api/mail', async (req, res) => {
+  let transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      type: "OAuth2",
+      user: process.env.MAIL_USERNAME,
+      pass: process.env.MAIL_PASSWORD,
+      clientId: process.env.OAUTH_CLIENTID,
+      clientSecret: process.env.OAUTH_CLIENT_SECRET,
+      refreshToken: process.env.OAUTH_REFRESH_TOKEN,
+    },
+  });
+
+  let mailOptions = {
+      from: "MI Blogs",
+      to: "ayomideadebayo646@gmail.com",
+      subject: 'Nodemailer Project',
+      text: '<h1>Welcome to this project, cool sending a mail to you my bro.</h1>'
+    };
+
+    transporter.sendMail(mailOptions, function (err, data) {
+      if (err) {
+        console.log("Error " + err);
+      } else {
+        res.send("Email sent successfully");
+      }
+    });
+})
 app.get("*", (req, res) => {
   res.sendFile(join(__dirname, "../client/dist", "index.html"));
 });
